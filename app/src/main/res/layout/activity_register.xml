@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@android:color/holo_green_light">
+
+    <ImageView
+        android:id="@+id/register_select_photo_view"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+    <EditText
+        android:id="@+id/register_editText_username"
+        android:inputType="text"
+        style="@style/edit_text_login_background_style"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:hint="Username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register_select_photo_view" />
+
+    <EditText
+        android:id="@+id/register_editText_email"
+        style="@style/edit_text_login_background_style"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintStart_toStartOf="@id/register_editText_username"
+        app:layout_constraintEnd_toEndOf="@id/register_editText_username"
+        app:layout_constraintTop_toBottomOf="@+id/register_editText_username" />
+
+    <EditText
+        android:id="@+id/login_editText_password"
+        style="@style/edit_text_login_background_style"
+        android:hint="Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/register_editText_email"
+        app:layout_constraintStart_toStartOf="@+id/register_editText_email"
+        app:layout_constraintTop_toBottomOf="@+id/register_editText_email" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/register_btn"
+        style="@style/button_login_background_style"
+        android:layout_marginTop="10dp"
+        android:text="Sign Up"
+        app:layout_constraintEnd_toEndOf="@+id/login_editText_password"
+        app:layout_constraintStart_toStartOf="@+id/login_editText_password"
+        app:layout_constraintTop_toBottomOf="@+id/login_editText_password" />
+
+    <TextView
+        android:id="@+id/register_clickable_text"
+        style="@style/login_clickable_text_style"
+        android:text="Already have an account? Log in!"
+        app:layout_constraintEnd_toEndOf="@+id/register_btn"
+        app:layout_constraintStart_toStartOf="@+id/register_btn"
+        app:layout_constraintTop_toBottomOf="@+id/register_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

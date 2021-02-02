@@ -1,4 +1,4 @@
-package com.volvadvit.kotlinmessasnger
+package com.volvadvit.kotlinmessenger
 
 import org.junit.Test
 
