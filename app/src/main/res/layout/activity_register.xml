@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".views.MainActivity"
     android:background="@android:color/holo_green_light">
 
     <androidx.appcompat.widget.AppCompatButton
@@ -24,6 +24,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/register_select_photo_view"
+        android:src="@drawable/person"
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:civ_border_color="@android:color/darker_gray"

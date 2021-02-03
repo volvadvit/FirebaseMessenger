@@ -1,12 +1,11 @@
-package com.volvadvit.kotlinmessenger
+package com.volvadvit.kotlinmessenger.views
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.volvadvit.kotlinmessenger.common.currentUserUid
-import com.volvadvit.kotlinmessenger.common.mAuth
-import com.volvadvit.kotlinmessenger.common.showToast
+import com.volvadvit.kotlinmessenger.R
+import com.volvadvit.kotlinmessenger.common.*
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity: AppCompatActivity() {
@@ -19,9 +18,7 @@ class LoginActivity: AppCompatActivity() {
             validateLoginData()
         }
         login_clickable_text.setOnClickListener {
-            startActivity(
-                    Intent(this, RegisterActivity::class.java)
-            )
+            startIntent(RegisterActivity())
             finish()
         }
     }
@@ -41,6 +38,7 @@ class LoginActivity: AppCompatActivity() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     showToast("Success $currentUserUid")
+                    startIntent(MessagesListActivity())
                 } else {
                     Log.d("Login", it.exception!!.message!!)
                     showToast("Authentication fail: ${it.exception!!.message!!}")

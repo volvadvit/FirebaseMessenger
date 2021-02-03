@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".views.MainActivity"
     android:background="@android:color/holo_green_light">
 
     <EditText
@@ -40,7 +40,7 @@
 
     <TextView
         android:id="@+id/login_clickable_text"
-        android:text="Back to registration"
+        android:text="Don't have an account yet? Click here"
         style="@style/login_clickable_text_style"
         app:layout_constraintEnd_toEndOf="@+id/login_btn"
         app:layout_constraintStart_toStartOf="@+id/login_btn"
