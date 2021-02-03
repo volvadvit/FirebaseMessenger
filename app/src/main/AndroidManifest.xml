@@ -9,17 +9,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinMessenger">
-        <activity android:name="com.volvadvit.kotlinmessenger.MainActivity">
+        <activity android:name="com.volvadvit.kotlinmessenger.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.volvadvit.kotlinmessenger.LoginActivity">
+        <activity android:name="com.volvadvit.kotlinmessenger.LoginActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name="com.volvadvit.kotlinmessenger.RegisterActivity">
+        <activity android:name="com.volvadvit.kotlinmessenger.RegisterActivity"
+            android:screenOrientation="portrait">
 
         </activity>
     </application>
