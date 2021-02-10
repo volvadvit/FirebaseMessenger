@@ -18,7 +18,7 @@ class LoginActivity: AppCompatActivity() {
             validateLoginData()
         }
         login_clickable_text.setOnClickListener {
-            startIntent(RegisterActivity())
+            startNewTaskIntent(RegisterActivity())
             finish()
         }
     }
@@ -38,10 +38,10 @@ class LoginActivity: AppCompatActivity() {
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     showToast("Success $currentUserUid")
-                    startIntent(MessagesListActivity())
+                    startNewTaskIntent(MessagesListActivity())
                 } else {
                     Log.d("Login", it.exception!!.message!!)
-                    showToast("Authentication fail: ${it.exception!!.message!!}")
+                    showToast(it.exception!!.message!!)
                 }
             }
     }

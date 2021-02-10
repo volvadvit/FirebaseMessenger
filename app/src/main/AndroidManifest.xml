@@ -9,22 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinMessenger">
-        <activity android:name=".views.UserListActivity"
-            android:parentActivityName=".views.MessagesListActivity">
-        </activity>
-        <activity android:name=".views.MessagesListActivity" />
         <activity
-            android:name=".views.MainActivity">
+            android:name=".views.ChatActivity"
+            android:parentActivityName=".views.UserListActivity"/>
+        <activity
+            android:name=".views.UserListActivity"
+            android:parentActivityName=".views.MessagesListActivity"/>
+        <activity android:name=".views.MessagesListActivity" />
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".views.LoginActivity" />
-        <activity
-            android:name=".views.RegisterActivity" />
+        <activity android:name=".views.LoginActivity" />
+        <activity android:name=".views.RegisterActivity" />
     </application>
 
 </manifest>

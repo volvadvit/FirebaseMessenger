@@ -9,4 +9,4 @@ val mRef = FirebaseDatabase.getInstance().reference
 val mStorage = FirebaseStorage.getInstance().reference
 
 val currentUser = mAuth.currentUser
-val currentUserUid = currentUser?.uid
+val currentUserUid = currentUser!!.uid

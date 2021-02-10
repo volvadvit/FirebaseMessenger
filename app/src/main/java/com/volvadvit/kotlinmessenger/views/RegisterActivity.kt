@@ -37,7 +37,7 @@ class RegisterActivity: AppCompatActivity() {
         }
 
         register_clickable_text.setOnClickListener {
-            startIntent(LoginActivity())
+            startNewTaskIntent(LoginActivity())
             finish()
         }
     }
@@ -77,7 +77,7 @@ class RegisterActivity: AppCompatActivity() {
                     Log.d("Register", "create User With Email:success ${mAuth.currentUser?.uid}")
                 } else {
                     Log.d("Register", it.exception!!.message!!)
-                    showToast("Authentication fail: ${it.exception!!.message}")
+                    showToast(it.exception!!.message!!)
                 }
                 uploadPhotoToFirebase()
             }
@@ -85,7 +85,7 @@ class RegisterActivity: AppCompatActivity() {
 
     private fun uploadPhotoToFirebase() {
         if (userPhotoUri != null) {
-            mStorage.child("images").child("$currentUserUid").putFile(userPhotoUri!!)
+            mStorage.child("images").child(currentUserUid).putFile(userPhotoUri!!)
                 .addOnSuccessListener {
                     it.storage.downloadUrl.addOnSuccessListener {
                         photoUrl = it.toString()
@@ -109,6 +109,6 @@ class RegisterActivity: AppCompatActivity() {
         val user = User(currentUserUid!!, register_editText_username.text.toString(), photoUrl)
         mRef.child("users").child(currentUserUid!!)
             .setValue(user)
-        startIntent(MessagesListActivity())
+        startNewTaskIntent(MessagesListActivity())
     }
 }

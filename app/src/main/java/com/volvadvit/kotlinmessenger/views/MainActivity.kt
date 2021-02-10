@@ -9,21 +9,16 @@ import com.volvadvit.kotlinmessenger.common.*
 
 class MainActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-
     override fun onStart() {
         super.onStart()
-        startActivity(Intent(this, RegisterActivity::class.java))
+        startNewTaskIntent(RegisterActivity())
             if (currentUser == null || mAuth.uid == null) {
                 showToast("Please, enter email and password")
                 Log.d("MainActivity: onStart", "Auth validate exception, user uid : $currentUserUid")
-                startActivity(Intent(this, LoginActivity::class.java))
+                startNewTaskIntent(LoginActivity())
                 finish()
             } else {
-                startIntent(MessagesListActivity())
+                startNewTaskIntent(MessagesListActivity())
                 finish()
             }
     }

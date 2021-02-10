@@ -15,7 +15,6 @@ class MessagesListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_messages_list)
-
         checkAuthState()
     }
 
@@ -27,7 +26,7 @@ class MessagesListActivity : AppCompatActivity() {
                     "MainActivity: onStart",
                     "Auth validate exception, user uid : $currentUserUid"
                 )
-                startIntent(LoginActivity())
+                startNewTaskIntent(LoginActivity())
                 finish()
             }
         }
@@ -41,7 +40,7 @@ class MessagesListActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.menu_new_message -> { startActivity(Intent(this, UserListActivity::class.java)) }
+            R.id.menu_new_message -> { startIntent(UserListActivity()) }
             R.id.menu_sign_out -> { mAuth.signOut() }
         }
         return super.onOptionsItemSelected(item)
