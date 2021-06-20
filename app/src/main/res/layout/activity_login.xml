@@ -5,13 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".views.MainActivity"
+    tools:context=".auth.LoginActivity"
     android:background="@android:color/holo_green_light">
 
     <EditText
         style="@style/edit_text_login_background_style"
         android:id="@+id/login_editText_email"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="200dp"
@@ -24,6 +25,7 @@
         style="@style/edit_text_login_background_style"
         android:id="@+id/login_editText_password"
         android:hint="Password"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="@+id/login_editText_email"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/login_editText_email"

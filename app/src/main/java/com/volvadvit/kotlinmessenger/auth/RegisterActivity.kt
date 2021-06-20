@@ -1,4 +1,4 @@
-package com.volvadvit.kotlinmessenger.views
+package com.volvadvit.kotlinmessenger.auth
 
 import android.app.Activity
 import android.content.Intent
@@ -12,12 +12,12 @@ import androidx.core.net.toUri
 import com.volvadvit.kotlinmessenger.R
 import com.volvadvit.kotlinmessenger.common.*
 import com.volvadvit.kotlinmessenger.model.User
+import com.volvadvit.kotlinmessenger.messages.MessagesListActivity
 import kotlinx.android.synthetic.main.activity_register.*
-import java.io.File
 
-class RegisterActivity: AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() {
 
-    private var userPhotoUri: Uri? = null
+    private var userPhotoUri: Uri = "".toUri()
     private var photoUrl: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,12 +27,12 @@ class RegisterActivity: AppCompatActivity() {
         register_select_photo_btn.setOnClickListener {
             selectImageToUpload()
         }
-        register_select_photo_view.visibility = View.VISIBLE
+        register_select_photo_view.visibility = View.INVISIBLE
         register_select_photo_view.setOnClickListener {
             selectImageToUpload()
         }
 
-        register_btn.setOnClickListener{
+        register_btn.setOnClickListener {
             validateRegisterData()
         }
 
@@ -51,12 +51,15 @@ class RegisterActivity: AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
-            userPhotoUri = data.data
-            val bitmap = MediaStore.Images.Media.getBitmap(contentResolver, userPhotoUri)    // map of pixels
+            userPhotoUri = data.data ?: return  // data.getExtra()
+            val bitmap =
+                MediaStore.Images.Media.getBitmap(contentResolver, userPhotoUri)    // map of pixels
             register_select_photo_view.setImageBitmap(bitmap)
 
             register_select_photo_view.visibility = View.VISIBLE
             register_select_photo_btn.visibility = View.INVISIBLE
+        } else {
+            showToast("Image upload error. Try again")
         }
     }
 
@@ -64,7 +67,7 @@ class RegisterActivity: AppCompatActivity() {
         val email = register_editText_email.text.toString()
         val password = register_editText_password.text.toString()
         if (email.isNotEmpty() && password.isNotEmpty()) {
-           mAuthRegisterUser(email, password)
+            mAuthRegisterUser(email, password)
         } else {
             showToast("Please, enter email and password")
         }
@@ -74,31 +77,33 @@ class RegisterActivity: AppCompatActivity() {
         mAuth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) {
                 if (it.isSuccessful) {
-                    Log.d("Register", "create User With Email:success ${mAuth.currentUser?.uid}")
+                    Log.d("Reg", "Create User With Email: success ${mAuth.currentUser?.uid}")
+                    uploadPhotoToFirebase()
                 } else {
-                    Log.d("Register", it.exception!!.message!!)
-                    showToast(it.exception!!.message!!)
+                    this.showToast(it.exception!!.message!!)
+                    Log.d("Reg", "Not successful create" + it.exception!!.message!!)
                 }
-                uploadPhotoToFirebase()
+            }.addOnFailureListener(this) {
+                showToast("RegFailureListener: " + it.message!!)
             }
     }
 
     private fun uploadPhotoToFirebase() {
-        if (userPhotoUri != null) {
-            mStorage.child("images").child(currentUserUid).putFile(userPhotoUri!!)
+        if (userPhotoUri.toString().isNotEmpty() && mAuth.currentUser?.uid != null) {
+            mStorage.child("images").child(mAuth.currentUser?.uid!!).putFile(userPhotoUri)
                 .addOnSuccessListener {
-                    it.storage.downloadUrl.addOnSuccessListener {
-                        photoUrl = it.toString()
+                    it?.storage?.downloadUrl?.addOnSuccessListener { uri ->
+                        photoUrl = uri.toString()
                         saveUserToDatabase()
                     }
                 }
                 .addOnFailureListener {
                     showToast("Fail upload photo: ${it.message!!}")
-                    Log.d("Register", it.message!!)
+                    Log.d("Reg", it.message!!)
                 }
         } else {
-            Log.d("Register", "Photo uri is null")
-            showToast("Failure: Set default profile image")
+            Log.d("Reg", "Photo uri is null")
+            showToast("Set default profile image")
             register_select_photo_view.visibility = View.VISIBLE
             register_select_photo_btn.visibility = View.INVISIBLE
             saveUserToDatabase()
@@ -106,9 +111,11 @@ class RegisterActivity: AppCompatActivity() {
     }
 
     private fun saveUserToDatabase() {
-        val user = User(currentUserUid!!, register_editText_username.text.toString(), photoUrl)
-        mRef.child("users").child(currentUserUid!!)
-            .setValue(user)
-        startNewTaskIntent(MessagesListActivity())
+        if (mAuth.currentUser?.uid != null) {
+            val user = User(mAuth.currentUser!!.uid, register_editText_username.text.toString(), photoUrl)
+            mDataBase.child("users").child(mAuth.currentUser!!.uid)
+                .setValue(user)
+            startNewTaskIntent(MessagesListActivity())
+        }
     }
 }

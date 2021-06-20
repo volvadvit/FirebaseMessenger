@@ -5,11 +5,10 @@ import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.squareup.picasso.Picasso
-import com.volvadvit.kotlinmessenger.views.MessagesListActivity
 import de.hdodenhof.circleimageview.CircleImageView
 
 fun Activity.showToast(message: String) =
-    Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 fun Activity.startNewTaskIntent(activity: Activity) {
     val intent = Intent(this, activity::class.java)

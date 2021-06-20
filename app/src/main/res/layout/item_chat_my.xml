@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
-    android:layout_marginBottom="10dp">
+    android:padding="5dp"
+    android:layout_marginBottom="5dp">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/input_photo"
+        android:id="@+id/photo"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -19,11 +19,11 @@
         app:civ_border_color="@android:color/white"/>
 
     <TextView
-        android:id="@+id/input_text"
+        android:id="@+id/output_text"
         style="@style/chat_text_style"
         android:layout_marginEnd="15dp"
-        android:text="Message will be here"
-        app:layout_constraintBottom_toBottomOf="@+id/input_photo"
-        app:layout_constraintEnd_toStartOf="@+id/input_photo"
-        app:layout_constraintTop_toTopOf="@+id/input_photo"/>
+        tools:text="Message will be here"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/photo"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

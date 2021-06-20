@@ -10,21 +10,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinMessenger">
         <activity
-            android:name=".views.ChatActivity"
+            android:name=".messages.ChatActivity"
             android:parentActivityName=".views.UserListActivity"/>
         <activity
             android:name=".views.UserListActivity"
-            android:parentActivityName=".views.MessagesListActivity"/>
-        <activity android:name=".views.MessagesListActivity" />
-        <activity android:name=".views.MainActivity">
+            android:parentActivityName=".messages.MessagesListActivity"/>
+        <activity android:name=".messages.MessagesListActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".views.LoginActivity" />
-        <activity android:name=".views.RegisterActivity" />
+        <activity android:name=".auth.LoginActivity" />
+        <activity android:name=".auth.RegisterActivity" />
     </application>
 
 </manifest>
