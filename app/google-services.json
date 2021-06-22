@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "12326321118",
+    "project_id": "kotlin-messenger-e1170",
+    "storage_bucket": "kotlin-messenger-e1170.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12326321118:android:22236e0b55d7a34788fb4f",
+        "android_client_info": {
+          "package_name": "com.volvadvit.kotlinmessasnger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12326321118-4gkm3ojjdv3qaakc6rl187fjrkj4isri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrMlJ1fDTu4oOZ3Q3Sd8zvfNH9aYssG0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12326321118-4gkm3ojjdv3qaakc6rl187fjrkj4isri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12326321118:android:91e9fa9e19384fc588fb4f",
+        "android_client_info": {
+          "package_name": "volvadvit.kotlinmessenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "12326321118-4gkm3ojjdv3qaakc6rl187fjrkj4isri.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrMlJ1fDTu4oOZ3Q3Sd8zvfNH9aYssG0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "12326321118-4gkm3ojjdv3qaakc6rl187fjrkj4isri.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
