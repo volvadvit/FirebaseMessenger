@@ -1,4 +1,4 @@
-# KotlinMessenger
+# Simple Firebase Messenger
 # Tools
 Kotlin / Firebase / Groupie RecyclerView / Picasso
 # Screenshot
